@@ -17,11 +17,16 @@
 </div>
 
 
+ <div class="mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search products..." value="{{ request()->query('search') }}">
+    </div>
+
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="productsTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -75,5 +80,31 @@
     {!! $products->links() !!}
 </div>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value;
+        
+        fetch('{{ route('products.search') }}?search=' + encodeURIComponent(searchTerm))
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newTable = doc.querySelector('#productsTable tbody');
+                const newPagination = doc.querySelector('.pagination');
+                
+                document.querySelector('#productsTable tbody').innerHTML = newTable.innerHTML;
+                const paginationElement = document.querySelector('.pagination');
+                if (paginationElement && newPagination) {
+                    paginationElement.outerHTML = newPagination.outerHTML;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});
+</script>
 
 @endsection

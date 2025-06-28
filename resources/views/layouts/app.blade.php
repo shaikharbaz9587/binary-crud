@@ -8,6 +8,7 @@
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
     <!-- jQuery (optional, required only if you plan to use it) -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -34,6 +35,8 @@
 
     <!-- Bootstrap 5 JS Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     @stack('scripts') <!-- Optional for page-specific JS -->
 </body>
