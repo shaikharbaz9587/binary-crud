@@ -20,11 +20,9 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->decimal('price');
             $table->integer('quantity');
-<<<<<<< HEAD
             $table->string('img')->nullable();
-=======
+
             $table->string('img');
->>>>>>> e359527b2eeee23447183e29caea6875a105c39f
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
